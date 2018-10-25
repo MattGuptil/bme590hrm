@@ -35,7 +35,7 @@ def avghr(dur,tarr):
 	while(True):
 		if j >= mylen:
 			break
-		if tarr[j]-tarr[i] >= tint:
+		if tarr[j]-tarr[i] >= tint or j = mylen-1:
 			beats[k] = 1+ j-i
 			k = k+1
 			i = j
