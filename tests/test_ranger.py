@@ -1,4 +1,4 @@
-from sinterp import ranger
+from sinterp import *
 import pytest
 
 
@@ -13,3 +13,5 @@ def test_ranger(myin, expect):
     v = ranger(myin)
 
     assert v == expect
+
+
