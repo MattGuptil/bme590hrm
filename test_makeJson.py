@@ -1,21 +1,19 @@
-from makeJson import makeJ
+from makeJson import makej
 import pytest
-import numpy as np
 import json
 
-@pytest.mark.parametrize('myIn, myIn2, myIn3, Expect', [
 
-	({"key1": 'WOW',"key2": 'GEEZE'},'myTest.csv','myTest.json', {"key1": 'WOW',"key2": 'GEEZE'}),
-	
+@pytest.mark.parametrize('myin, myin2, myin3, expect', [
 
-	])
+    ({"key1": 'WOW', "key2": 'GEEZE'}, 'myTest.csv', 'myTest.json', {"key1": 'WOW', "key2": 'GEEZE'}),
+    ({"key1": [1, 2, 3], "key2": 1}, 'myTest.csv', 'myTest.json', {"key1": [1, 2, 3], "key2": 1}),
 
 
-def test_jSon(myIn,myIn2,myIn3,Expect):
-	makeJ(myIn,myIn2)
+])
+def test_json(myin, myin2, myin3, expect):
+    makej(myin, myin2)
 
-	with open(myIn3, 'r') as f:
-		mydic = json.load(f)
+    with open(myin3, 'r') as f:
+        mydic = json.load(f)
 
-	assert mydic == Expect
-
+    assert mydic == expect
