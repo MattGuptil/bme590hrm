@@ -3,6 +3,10 @@ from Datacollector import collector
 import numpy as np
 
 
+#  This function peakfinder opens the csv file by user selection. Defaults to test data1
+#  It then separates the time and voltage arrays and uses a peak detection algorithm
+#  From MIT. The values returned in myindices are the indices of peaks in the time array.
+#  Returns 2 arrays
 def peakfinder():
 
 	ecgd = collector()
@@ -14,6 +18,8 @@ def peakfinder():
 	return time, myindices
 
 
+#  The timefinder function returns all the times that a peak occured by using the
+#  arrray of peak indices. Returns an array
 def timefinder(mytime, myindex):
 
 	newtime = mytime[myindex]
@@ -21,6 +27,14 @@ def timefinder(mytime, myindex):
 	return newtime
 
 
+#  avghr Allows the user to select and Avg HR interval based in seconds and requires
+#  it to be in the range of the data. If not in range it throws a value error
+#  To calculate intervals it looks at the distance between elements and waits until
+#  the interval is matched or exceeded. It then takes the number of beats found in the
+#  interval and outputs all the beats found in that interval into an array
+#  resulting in array of beats per interval. This is then converted to beats/sec ->
+#  beats/min and then the array is averaged to find the overall average.
+#  This returns one value of Avg BPM, technically it is still a np.array
 def avghr(dur,tarr):
 	print("Max Input is", dur, "s")
 	tint = input("Enter Avg HR Interval in secs:")
@@ -54,6 +68,8 @@ def avghr(dur,tarr):
 	return avgbpm
 
 
+#  durr find the total duration of the data. It must take in the full array of times
+#  Not the array with the times of peaks! Return a single value in a np.array
 def durr(tarr):
 	f = len(tarr) - 1
 
@@ -62,6 +78,8 @@ def durr(tarr):
 	return dur
 
 
+# findex finds the extreme voltages of the data. Takes in voltage array
+#  Returns a min and a max as comma separated
 def findex(volt):
 
 	mmax = np.max(volt)
@@ -70,6 +88,8 @@ def findex(volt):
 	return mmax, mmin
 
 
+# numbeats takes in array of beat indices and find the length to get the total beats
+# Returns a single value as a np.array
 def numbeats(beatindex):
 
 	mynum = len(beatindex)
