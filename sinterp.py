@@ -2,14 +2,27 @@ from Filtering import myfilter
 import numpy as np
 def dataCleaner(ecgd):
 
-	time = ecgd[0]
-	volt = ecgd[1]
+	time = sinterp(ecgd[0])
+	volt = sinterp(ecgd[1])
 
+	volt = ranger(volt)
 
-
+	ecgd = [time, volt]
 
 	time, fvolt = myfilter(ecgd)
 
+def typeCorrection(arry):
+
+	for j,each in arry:
+		
+
+
+def ranger(volt):
+
+	for j,each in volt:
+		if each >= 300:
+			volt[j] = 299
+	return volt
 
 def sinterp(time):
 	
