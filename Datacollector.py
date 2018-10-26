@@ -1,5 +1,5 @@
 import numpy as np
-import pands as pd
+import pandas as pd
 import sys
 
 
@@ -12,7 +12,7 @@ def collector():
         fname = '\\test_data1.csv'
 
     myfile = myfile + fname
-
+    
     try:
         df = pd.read_csv(myfile)
     except FileNotFoundError:
@@ -23,5 +23,5 @@ def collector():
     time, data = my_csv.transpose()
     ecgd = [time, data]
 
-    return ecgd
+    return ecgd, fname
 
