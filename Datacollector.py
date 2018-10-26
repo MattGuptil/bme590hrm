@@ -1,5 +1,5 @@
 import numpy as np
-import pands as pd
+import pandas as pd
 import sys
 
 
@@ -21,7 +21,7 @@ def collector():
 
     my_csv = np.genfromtxt(myfile, delimiter=',')
     time, data = my_csv.transpose()
-    ecgd = [time, data]
+    ecgd = (time, data)
 
     return ecgd
 
