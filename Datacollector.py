@@ -19,7 +19,7 @@ def collector():
         print('File Not Found, or File Type not Recognizable')
         sys.exit()
 
-    my_csv = np.genfromtxt(myfile, delimiter=',')
+    my_csv = np.genfromtxt(myfile, delimiter=',', filling_values = -999)
     time, data = my_csv.transpose()
     ecgd = [time, data]
 
