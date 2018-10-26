@@ -4,18 +4,14 @@ import numpy as np
 
 
 #  This function peakfinder opens the csv file by user selection. Defaults to test data1
-#  It then separates the time and voltage arrays and uses a peak detection algorithm
+#  uses a peak detection algorithm
 #  From MIT. The values returned in myindices are the indices of peaks in the time array.
-#  Returns 2 arrays
-def peakfinder():
-
-	ecgd = collector()
-	time = ecgd[0]
-	vd = ecgd[1]
+#  Returns 1 array
+def peakfinder(vd):
 	
 	myindices = detect_peaks(vd, mph=0, show=False)
 
-	return time, myindices
+	return myindices
 
 
 #  The timefinder function returns all the times that a peak occured by using the
@@ -85,7 +81,7 @@ def findex(volt):
 	mmax = np.max(volt)
 	mmin = np.min(volt)
 
-	return mmax, mmin
+	return (mmax, mmin)
 
 
 # numbeats takes in array of beat indices and find the length to get the total beats
@@ -95,11 +91,3 @@ def numbeats(beatindex):
 	mynum = len(beatindex)
 
 	return mynum
-
-
-if __name__ == '__main__':
-	a, b = peakfinder()
-
-	c = timefinder(a, b)
-	mydur = durr(a)
-	avghr(mydur, c)
