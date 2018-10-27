@@ -21,9 +21,10 @@ def dataCleaner(ecgd):
 
 #  Goes through entire array to see if there is a boundary violation, fixes those issues
 # . Inputs an array, Outputs fixed array
+#  Checks to make sure that an iterable object was passed into it
 def ranger(volt):
 
-	if isinstance(volt, str) or isinstance(volt, int):
+	if isinstance(volt, str) or isinstance(volt, int) or volt == '':
 		raise TypeError("ERROR: Input was not a proper iterable, ")
 
 	for j, each in enumerate(volt):
@@ -36,7 +37,7 @@ def ranger(volt):
 
 # Performs my own custom linear interpolation on datasets when they are missing values
 # Outputs fixed array/dataset
-def sinterp(time):
+def sinterp1(time):
 	
 	i = 0
 	j = 0
@@ -74,14 +75,13 @@ def sinterp(time):
 					break
 				else:
 					time[k+1] = float(time[k]) + float(myint)
-					print(time[k+1])
+
 					k = k + 1
 		i = i + 1		
 	return time
 
 
-# if __name__ == "__main__":
-# 	myarr = np.array([-999, 1, -999, -999, 5, 7, -999, 15 , -999])
-#
-#  t = sinterp(myarr)
-# print(t)
+if __name__ == "__main__":
+	myarr = np.array([-999, 1, -999, -999, 5, 7, -999, 15 , -999])
+	t = sinterp1(myarr)
+	print(t)
