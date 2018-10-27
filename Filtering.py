@@ -11,9 +11,9 @@ def myfilter(df):
 
     output = signal.filtfilt(b, a, myvolt)
 
-    #plt.plot(mytime, myvolt, label='Original')
-    plt.plot(mytime, output, label='filtered')
-    plt.show()
+# plt.plot(mytime, myvolt, label='Original')
+# plt.plot(mytime, output, label='filtered')
+# plt.show()
 
     filtdata = (mytime, output)
     return filtdata
