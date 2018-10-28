@@ -48,8 +48,8 @@ def detect_peaks(x, mph=None, mpd=1, threshold=0, edge='rising',
     -----
     The detection of valleys instead of peaks is performed internally by simply
     negating the data: `ind_valleys = detect_peaks(-x)`
-    
-    The function can handle NaN's 
+
+    The function can handle NaN's
 
     See this IPython Notebook [1]_.
 
@@ -91,7 +91,7 @@ def detect_peaks(x, mph=None, mpd=1, threshold=0, edge='rising',
     ---------------
     '1.0.5':
         The sign of `mph` is inverted if parameter `valley` is True
-    
+
     """
 
     x = np.atleast_1d(x).astype('float64')
@@ -122,8 +122,9 @@ def detect_peaks(x, mph=None, mpd=1, threshold=0, edge='rising',
     # handle NaN's
     if ind.size and indnan.size:
         # NaN's and values close to NaN's cannot be peaks
-        ind = ind[np.in1d(ind, np.unique(np.hstack((indnan, indnan - 1, indnan
-                                                    + 1))), invert=True)]
+        ind = ind[np.in1d(ind, np.unique(np.hstack((indnan, indnan - 1,
+                                                    indnan + 1))),
+                          invert=True)]
     # first and last values of x cannot be peaks
     if ind.size and ind[0] == 0:
         ind = ind[1:]
