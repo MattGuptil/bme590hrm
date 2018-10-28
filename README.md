@@ -25,4 +25,8 @@ Start:
         Makej takes in the metrics dictionary and original file name. It
         creates a json file with the same name as the csv file that was used.
         
+    Note: Code will not detect peaks that are negative.
+    Note2: A graph can be displayed showing where the code found peaks if desired.
+    Simply change to show =True within the newindice.py script inside the peakfinder
+    function.
         

@@ -1,30 +1,55 @@
 from Filtering import myfilter
 import numpy as np
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+warnings.simplefilter(action='ignore', category=RuntimeWarning)
 
 
 #  Takes in arrays and performs linear interpolation, checks range boundaries, and outputs filtered data
 #  Can't test this as it is made up of tested functions so output will always be as expected when other functions pass
 #  As long as functions check for exceptions
-def dataCleaner(ecgd):
+def datacleaner(ecgd):
+	"""This function gives us filtered and interpolated data.
 
-	time = sinterp(ecgd[0])
-	volt = sinterp(ecgd[1])
+	Args:
+		ecgd: Array of ecgd data array contains two numpy arrays of time and voltage.
 
-	volt = ranger(volt)
+	Returns:
+		Two numpy array separated by commas of the cleaned data.
+
+	Raises:
+		TypeError: If 'ecgd' is empty or isn't the correct type.
+	"""
+	if len(ecgd) == 0 or isinstance(ecgd, str) or isinstance(ecgd, int):
+		raise TypeError("ERROR: Input was not a proper iterable, ")
+	time = sinterp1(ecgd[0])
+	volt = sinterp1(ecgd[1])
 
 	ecgd = [time, volt]
 
-	time, fvolt = myfilter(ecgd)
+	time, volt = myfilter(ecgd)
 
-	return time, fvolt
+	volt = ranger(volt)
+
+	return time, volt
 
 
 #  Goes through entire array to see if there is a boundary violation, fixes those issues
 # . Inputs an array, Outputs fixed array
 #  Checks to make sure that an iterable object was passed into it
 def ranger(volt):
+	"""Finds value out of range and changes them to be within range.
 
-	if isinstance(volt, str) or isinstance(volt, int) or volt == '':
+	Args:
+		volt: Numpy array of voltages.
+
+	Returns:
+		Numpy array of fixed voltages.
+
+	Raises:
+		TypeError: If 'volt' empty or not the correct data type.
+	"""
+	if len(volt) == 0 or isinstance(volt, str) or isinstance(volt, int):
 		raise TypeError("ERROR: Input was not a proper iterable, ")
 
 	for j, each in enumerate(volt):
@@ -38,7 +63,19 @@ def ranger(volt):
 # Performs my own custom linear interpolation on datasets when they are missing values
 # Outputs fixed array/dataset
 def sinterp1(time):
-	
+	"""Takes in a array or numpy array and fills in missing data through interpolation.
+
+	Args:
+		time: Numpy array or simple array of values taken from csv file possible missing data.
+
+	Returns:
+		Interpolated numpy array that doesn't have any missing data points.
+
+	Raises:
+		TypeError: If 'time' is empty or is not the correct type
+	"""
+	if len(time) == 0 or isinstance(time, str) or isinstance(time, int):
+		raise TypeError("ERROR: Input was not a proper iterable, ")
 	i = 0
 	j = 0
 	k = 0
@@ -53,7 +90,7 @@ def sinterp1(time):
 		if i >= t:
 			break
 
-		if time[i] == -999:
+		if time[i] == -999 or np.isnan(time[i]):
 
 			j = i
 			while(True):
