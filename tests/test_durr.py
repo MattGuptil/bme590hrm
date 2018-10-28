@@ -31,7 +31,6 @@ def test_durr(myin, expect):
 
 ])
 def test_durr2(myin_, expect_):
-
     try:
         durr(myin_)
         myb = False

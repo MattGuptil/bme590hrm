@@ -8,7 +8,6 @@ import numpy as np
     (np.array([1, 2, 3]), 3),
     ([1, 2, 3], 3),
 
-
 ])
 def test_numbeats(myin, expect):
     nt = numbeats(myin)
@@ -24,10 +23,8 @@ def test_numbeats(myin, expect):
     (1, True),
     ('df', True),
 
-
 ])
 def test_numbeats2(myin_, expect_):
-
     try:
         numbeats(myin_)
         myb = False

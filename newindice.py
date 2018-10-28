@@ -2,6 +2,7 @@ from peakalgorithm import detect_peaks
 from Datacollector import collector
 import numpy as np
 import warnings
+
 warnings.simplefilter(action='ignore', category=RuntimeWarning)
 
 
@@ -99,7 +100,6 @@ def avghr(dur, tarr):
 
     while True:
         if j >= mylen:
-
             break
 
         if tarr[j] - tarr[i] >= tint or j == mylen - 1:
@@ -186,4 +186,3 @@ if __name__ == '__main__':
     mytime = [1, 2, 3, 4]
     myd = 4
     print(avghr(myd, mytime))
-

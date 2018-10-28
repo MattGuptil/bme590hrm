@@ -2,7 +2,6 @@ from newindice import *
 from sinterp import datacleaner
 from makeJson import makej
 
-
 #  This function runs all of my functions and outputs to a JSON file
 #  This script allows the user to select the file to examine and
 #  the interval for average heart rate.

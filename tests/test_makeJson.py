@@ -10,9 +10,6 @@ import numpy as np
     ({"key1": [1, 2, 3], "key2": 1}, 'myTest.csv', 'myTest.json', {"key1": [1, 2, 3], "key2": 1}),
     ({}, 'myTest.csv', 'myTest.json', {}),
 
-
-
-
 ])
 def test_json(myin, myin2, myin3, expect):
     makej(myin, myin2)
@@ -32,7 +29,6 @@ def test_json(myin, myin2, myin3, expect):
     (1, 1, True),
 ])
 def test_json2(myin_, myin2_, expect_):
-
     try:
         makej(myin_, myin2_)
         myb = False

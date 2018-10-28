@@ -26,7 +26,6 @@ def test_findex(myin, expect):
     (1, True),
     ('n', True),
 
-
 ])
 def test_findex2(myin_, expect_):
     try:

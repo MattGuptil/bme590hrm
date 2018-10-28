@@ -1,6 +1,5 @@
 import numpy as np
 from scipy import signal
-from Datacollector import collector
 
 
 def myfilter(df):
@@ -16,7 +15,7 @@ def myfilter(df):
             TypeError: If the array is empty or if 'df' is an int or str or NaN another type is not possible.
 
     """
-    if not df or isinstance(df, int) or isinstance(df, str):
+    if len(df) == 0 or isinstance(df, int) or isinstance(df, str) or not len(df) == 2:
         raise TypeError("Error: Array Passed into Filter was Empty or not an Array")
     mytime = df[0]
     myvolt = df[1]
@@ -24,14 +23,15 @@ def myfilter(df):
 
     output = signal.filtfilt(b, a, myvolt)
 
-# plt.plot(mytime, myvolt, label='Original')
-# plt.plot(mytime, output, label='filtered')
-# plt.show()
+    # plt.plot(mytime, myvolt, label='Original')
+    # plt.plot(mytime, output, label='filtered')
+    # plt.show()
 
     filtdata = (mytime, output)
     return filtdata
 
 
 if __name__ == "__main__":
-    df = collector()
-    myfilter(df)
+    d = [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+         [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+    print(myfilter(d))

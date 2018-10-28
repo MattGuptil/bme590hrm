@@ -28,7 +28,6 @@ def test_timefinder(myin, myin2, expect):
 
 ])
 def test_timefinder2(myin_, myin2_, expect_):
-
     try:
         timefinder(myin_, myin2_)
         myb = False
@@ -38,4 +37,3 @@ def test_timefinder2(myin_, myin2_, expect_):
         myb = True
     finally:
         assert myb == expect_
-
