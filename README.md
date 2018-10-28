@@ -25,4 +25,19 @@ Start:
         Makej takes in the metrics dictionary and original file name. It
         creates a json file with the same name as the csv file that was used.
         
+    Note: Code will not detect peaks that are negative.
+    Note2: A graph can be displayed showing where the code found peaks if desired.
+    Simply change to show =True within the newindice.py script inside the peakfinder
+    function.
+    Note3: To use make sure to type a backslash before inputing file name, such as '\test_data21.csv'
+    Note4: Several Functions were not tested because they were 1. Used within copyright from and
+    outside source (MIT). 2. Were only holder functions to execute functions 
+    that already had unit tests associated with them.
+    
+Further:
+    There are several python files that are not used and those do not have docstrings or significant unit tests.
+    These were written when I was trying to build my own algorithm that would also detect the QRS intervals. I spent way
+    to much time on it and I don't want to delete it so it is still in the project. These have been put into the 
+    directory titled 'NotUsed'
+ 
         

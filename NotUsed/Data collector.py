@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 
+
 def collector():
     myfile = "data"
 

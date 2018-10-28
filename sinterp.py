@@ -1,87 +1,125 @@
 from Filtering import myfilter
 import numpy as np
+import warnings
+
+warnings.simplefilter(action='ignore', category=FutureWarning)
+warnings.simplefilter(action='ignore', category=RuntimeWarning)
 
 
 #  Takes in arrays and performs linear interpolation, checks range boundaries, and outputs filtered data
 #  Can't test this as it is made up of tested functions so output will always be as expected when other functions pass
 #  As long as functions check for exceptions
-def dataCleaner(ecgd):
+def datacleaner(ecgd):
+    """This function gives us filtered and interpolated data.
 
-	time = sinterp(ecgd[0])
-	volt = sinterp(ecgd[1])
+    Args:
+        ecgd: Array of ecgd data array contains two numpy arrays of time and voltage.
 
-	volt = ranger(volt)
+    Returns:
+        Two numpy array separated by commas of the cleaned data.
 
-	ecgd = [time, volt]
+    Raises:
+        TypeError: If 'ecgd' is empty or isn't the correct type.
+    """
+    if len(ecgd) == 0 or isinstance(ecgd, str) or isinstance(ecgd, int):
+        raise TypeError("ERROR: Input was not a proper iterable, ")
+    time = sinterp1(ecgd[0])
+    volt = sinterp1(ecgd[1])
 
-	time, fvolt = myfilter(ecgd)
+    ecgd = [time, volt]
 
-	return time, fvolt
+    time, volt = myfilter(ecgd)
+
+    volt = ranger(volt)
+
+    return time, volt
 
 
 #  Goes through entire array to see if there is a boundary violation, fixes those issues
 # . Inputs an array, Outputs fixed array
 #  Checks to make sure that an iterable object was passed into it
 def ranger(volt):
+    """Finds value out of range and changes them to be within range.
 
-	if isinstance(volt, str) or isinstance(volt, int) or volt == '':
-		raise TypeError("ERROR: Input was not a proper iterable, ")
+    Args:
+        volt: Numpy array of voltages.
 
-	for j, each in enumerate(volt):
-		if each >= 300:
-			volt[j] = 299
-		if each <= -300:
-			volt[j] = -299
-	return volt
+    Returns:
+        Numpy array of fixed voltages.
+
+    Raises:
+        TypeError: If 'volt' empty or not the correct data type.
+    """
+    if len(volt) == 0 or isinstance(volt, str) or isinstance(volt, int):
+        raise TypeError("ERROR: Input was not a proper iterable, ")
+
+    for j, each in enumerate(volt):
+        if each >= 300:
+            volt[j] = 299
+        if each <= -300:
+            volt[j] = -299
+    return volt
 
 
 # Performs my own custom linear interpolation on datasets when they are missing values
 # Outputs fixed array/dataset
 def sinterp1(time):
-	
-	i = 0
-	j = 0
-	k = 0
-	t = len(time) - 1
+    """Takes in a array or numpy array and fills in missing data through interpolation.
 
-	while(True):
-		count = 3
+    Args:
+        time: Numpy array or simple array of values taken from csv file possible missing data.
 
-		if time[t] == -999 or time[0] == -999:
-			time[t] = 0
+    Returns:
+        Interpolated numpy array that doesn't have any missing data points.
 
-		if i >= t:
-			break
+    Raises:
+        TypeError: If 'time' is empty or is not the correct type
+    """
+    if len(time) == 0 or isinstance(time, str) or isinstance(time, int):
+        raise TypeError("ERROR: Input was not a proper iterable, ")
+    i = 0
+    j = 0
+    k = 0
+    t = len(time) - 1
 
-		if time[i] == -999:
+    while (True):
+        count = 3
 
-			j = i
-			while(True):
+        if time[t] == -999 or time[0] == -999:
+            time[t] = 0
 
-				if time[j+1] == -999:
+        if i >= t:
+            break
 
-					j = j +1
-					count = count + 1
-				else:
-					j = j+1
-					break
+        if time[i] == -999 or np.isnan(time[i]):
 
-			myint = float((time[j] -time[i-1])) / float(count)
-			k = i-1
+            j = i
+            while (True):
 
-			while(True):
-				
-				if k >= j-1:
-					break
-				else:
-					time[k+1] = float(time[k]) + float(myint)
+                if time[j + 1] == -999:
 
-					k = k + 1
-		i = i + 1		
-	return time
+                    j = j + 1
+                    count = count + 1
+                else:
+                    j = j + 1
+                    break
+
+            myint = float((time[j] - time[i - 1])) / float(count)
+            k = i - 1
+
+            while (True):
+
+                if k >= j - 1:
+                    break
+                else:
+                    time[k + 1] = float(time[k]) + float(myint)
+
+                    k = k + 1
+        i = i + 1
+    return time
 
 
 if __name__ == "__main__":
-	myarr = np.array([-999, 1, -999, -999, 5, 7, -999, 15 , -999])
-	t = sinterp1(myarr)
-	print(t)
+    myarr = np.array([-999, 1, -999, -999, 5, 7, -999, 15, -999])
+    t = sinterp1(myarr)
+    print(t)

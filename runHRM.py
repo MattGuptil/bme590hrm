@@ -1,15 +1,14 @@
 from newindice import *
+from sinterp import datacleaner
 from makeJson import makej
-
 
 #  This function runs all of my functions and outputs to a JSON file
 #  This script allows the user to select the file to examine and
 #  the interval for average heart rate.
 if __name__ == '__main__':
-    #  Add filtering to peakfinder function or incorporate new one
+    """This is main running function that combines all the functions and utilizes them for their potential."""
     ecgd, fname = collector()
-    ttime = ecgd[0]
-    vd = ecgd[1]
+    ttime, vd = datacleaner(ecgd)
 
     myindices = peakfinder(vd)
     mydur = durr(ttime)

@@ -1,4 +1,4 @@
-from intervals import intervs
+from NotUsed.intervals import intervs
 import pytest
 import numpy as np
 

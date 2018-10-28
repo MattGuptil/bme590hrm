@@ -2,7 +2,6 @@ import numpy as np
 
 
 def findqrs(data):
-
     dsq = doubdiff(data)
     mysorted = mysort(dsq)  # Sorts in reverse order and gives indices of QRS segments
     diffarray = diffselect(mysorted)  # Trims based on QRS segments
