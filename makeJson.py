@@ -1,9 +1,12 @@
 import json
 
 
-#  Takes a dictionary in and a string that represents the file name where data was taken from
-#  Creates a json file with the same name as the csv file that data was taken from
-#  Returns nothing because it creates a file. Also fname will never be empty since our collector sets a default
+#  Takes a dictionary in and a string that represents the file name where data
+# was taken from
+#  Creates a json file with the same name as the csv file that data was taken
+# from
+#  Returns nothing because it creates a file. Also fname will never be empty
+# since our collector sets a default
 def makej(mydir, fname):
     """Makes a JSON file and writes a dictionary to it.
 
@@ -12,7 +15,8 @@ def makej(mydir, fname):
         fname: String containing name of the csv file data was taken from.
 
     Returns:
-        Nothing but it does create a file with the same name as the csv file data was collected from.
+        Nothing but it does create a file with the same name as the csv file da
+        ta was collected from.
 
     Raises:
         TypeError: If 'mydir' is not a dict or if 'fname' is not a string.
