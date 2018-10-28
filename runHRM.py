@@ -1,6 +1,7 @@
 from newindice import *
 from sinterp import datacleaner
 from makeJson import makej
+from Datacollector import collector
 
 #  This function runs all of my functions and outputs to a JSON file
 #  This script allows the user to select the file to examine and

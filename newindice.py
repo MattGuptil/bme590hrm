@@ -1,5 +1,4 @@
 from peakalgorithm import detect_peaks
-from Datacollector import collector
 import numpy as np
 import warnings
 
