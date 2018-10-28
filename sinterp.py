@@ -6,14 +6,17 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=RuntimeWarning)
 
 
-#  Takes in arrays and performs linear interpolation, checks range boundaries, and outputs filtered data
-#  Can't test this as it is made up of tested functions so output will always be as expected when other functions pass
+#  Takes in arrays and performs linear interpolation, checks range boundaries,
+# and outputs filtered data
+#  Can't test this as it is made up of tested functions so output will always
+# be as expected when other functions pass
 #  As long as functions check for exceptions
 def datacleaner(ecgd):
     """This function gives us filtered and interpolated data.
 
     Args:
-        ecgd: Array of ecgd data array contains two numpy arrays of time and voltage.
+        ecgd: Array of ecgd data array contains two numpy arrays of time and
+        voltage.
 
     Returns:
         Two numpy array separated by commas of the cleaned data.
@@ -35,7 +38,8 @@ def datacleaner(ecgd):
     return time, volt
 
 
-#  Goes through entire array to see if there is a boundary violation, fixes those issues
+#  Goes through entire array to see if there is a boundary violation, fixes
+# those issues
 # . Inputs an array, Outputs fixed array
 #  Checks to make sure that an iterable object was passed into it
 def ranger(volt):
@@ -61,13 +65,16 @@ def ranger(volt):
     return volt
 
 
-# Performs my own custom linear interpolation on datasets when they are missing values
+# Performs my own custom linear interpolation on datasets when they are missing
+#  values
 # Outputs fixed array/dataset
 def sinterp1(time):
-    """Takes in a array or numpy array and fills in missing data through interpolation.
+    """Takes in a array or numpy array and fills in missing data through
+    interpolation.
 
     Args:
-        time: Numpy array or simple array of values taken from csv file possible missing data.
+        time: Numpy array or simple array of values taken from csv file
+        possible missing data.
 
     Returns:
         Interpolated numpy array that doesn't have any missing data points.

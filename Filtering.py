@@ -12,11 +12,13 @@ def myfilter(df):
         Array of 2 Numpy arrays.
 
         Raises:
-            TypeError: If the array is empty or if 'df' is an int or str or NaN another type is not possible.
+            TypeError: If the array is empty or if 'df' is an int or str orNaN.
 
     """
-    if len(df) == 0 or isinstance(df, int) or isinstance(df, str) or not len(df) == 2:
-        raise TypeError("Error: Array Passed into Filter was Empty or not an Array")
+    if len(df) == 0 or isinstance(df, int) or isinstance(df, str) or not \
+            len(df) == 2:
+        raise TypeError("Error: Array Passed into Filter was Empty or not an "
+                        "Array")
     mytime = df[0]
     myvolt = df[1]
     b, a = signal.butter(4, .1, 'low')

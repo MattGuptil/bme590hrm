@@ -7,7 +7,7 @@ from Datacollector import collector
 #  This script allows the user to select the file to examine and
 #  the interval for average heart rate.
 if __name__ == '__main__':
-    """This is main running function that combines all the functions and utilizes them for their potential."""
+    """This is main running function that utilizes all functions."""
     ecgd, fname = collector()
     ttime, vd = datacleaner(ecgd)
 

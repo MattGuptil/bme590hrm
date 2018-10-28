@@ -6,8 +6,10 @@ import numpy as np
 
 @pytest.mark.parametrize('myin, myin2, myin3, expect', [
 
-    ({"key1": 'WOW', "key2": 'GEEZE'}, 'myTest.csv', 'myTest.json', {"key1": 'WOW', "key2": 'GEEZE'}),
-    ({"key1": [1, 2, 3], "key2": 1}, 'myTest.csv', 'myTest.json', {"key1": [1, 2, 3], "key2": 1}),
+    ({"key1": 'WOW', "key2": 'GEEZE'}, 'myTest.csv', 'myTest.json',
+     {"key1": 'WOW', "key2": 'GEEZE'}),
+    ({"key1": [1, 2, 3], "key2": 1}, 'myTest.csv', 'myTest.json',
+     {"key1": [1, 2, 3], "key2": 1}),
     ({}, 'myTest.csv', 'myTest.json', {}),
 
 ])
